@@ -1,0 +1,13 @@
+.list-group-item {
+    position: relative;
+}
+.float-right img {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    -webkit-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+}
+a {
+    color: inherit;
+}
