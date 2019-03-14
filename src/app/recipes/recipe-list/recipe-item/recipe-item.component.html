@@ -1,4 +1,4 @@
-<a href="#" class="list-group-item clearfix mt-3" (click)="setRecipe(index)">
+<a  *ngFor="let recipeItem of recipes; let index=index;" class="list-group-item clearfix mt-3" [routerLink]=index routerLinkActive="active" style="cursor: pointer;">
 <div class="float-left">
   <h4 class="list-group-item-heading">{{ recipeItem.name }}</h4>
   <div class="pr-4"><p class="list-group-item-text pr-5 mr-5">{{ recipeItem.description }}</p></div>

@@ -1,9 +1,10 @@
-<app-header (showRecipesToParent)="showRecipes($event)" (showListToParent)="showList($event)"></app-header>
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="recipes"></app-recipes>
-      <app-shopping-list *ngIf="shopping_list"></app-shopping-list>
+      <router-outlet></router-outlet>
+<!--       <app-recipes *ngIf="showing === 'Recipes'"></app-recipes>
+      <app-shopping-list *ngIf="showing === 'Shopping'"></app-shopping-list> -->
     </div>
   </div>
 </div>

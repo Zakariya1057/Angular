@@ -1,15 +1,23 @@
 <div class="row">
   <div class="col-10">
-    <app-shopping-edit (addToShoppingList)="addToList($event)" (deleteFromShoppingList)="DeleteFromList()"></app-shopping-edit>
+    <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">
-      <a
-        class="list-group-item"
-        style="cursor: pointer"
-        *ngFor="let ingredient of ingredients"
-      >
+      <li         
+      class="list-group-item"
+      style="cursor: pointer"
+      *ngFor="let ingredient of ingredients;let i = index;">
+     
         {{ ingredient.name }} ({{ ingredient.amount }})
-      </a>
+      <a href="#" appEditable class="btn btn-success float-right">Edit</a>
+      <button 
+      class="btn btn-danger float-right mr-4"
+      [attr.index]="i"
+      appShoppingItem
+      >
+        Delete
+      </button>
+    </li>
     </ul>
   </div>
 </div>

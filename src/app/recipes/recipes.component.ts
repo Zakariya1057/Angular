@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Ingredient} from '../shared/ingredient.model';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -7,19 +7,14 @@ import {Ingredient} from '../shared/ingredient.model';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  index: Ingredient;
 
-  recipeDetail;
-  infoText;
-  getRecipe(event: any){
-    console.log(event);
-    this.index = event;
-    this.index.amount;
-  }
-  recipeShow;
-  constructor() { }
+  constructor(public route:Router,public Acroute:ActivatedRoute) { }
 
   ngOnInit() {
+    
   }
 
+  createRecipe(){
+    this.route.navigate(['add'],{relativeTo:this.Acroute});
+  }
 }

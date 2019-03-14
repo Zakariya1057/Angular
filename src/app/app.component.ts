@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-
+import { RecipeService } from './recipe.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,17 +7,17 @@ import { Component, Output } from '@angular/core';
 })
 
 export class AppComponent {
-recipes: boolean = true;
-shopping_list:boolean = false;
+  showing:string;
 
-  showRecipes() {
-    this.recipes = true;
-    this.shopping_list = false;
+  constructor(private recipeService:RecipeService){
+   this.showing =  recipeService.showing;
+   console.log(this.showing);
+   recipeService.toggler.subscribe(
+     (showing) => {
+      this.showing = showing;
+     }
+   )
   }
 
-  showList() {
-    this.recipes = false;
-    this.shopping_list = true;
-  }
-
+  
 }

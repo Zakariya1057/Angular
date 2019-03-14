@@ -6,21 +6,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#" (click)="showRecipes($event)">Recipes</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="recipes"  routerLinkActive="active">Recipes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="showList($event)">Shopping List</a>
+        <a class="nav-link" href="#" routerLink="shopping" routerLinkActive="active">Shopping List</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" appDropdown href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+      <li class="nav-item dropdown float-right" style="cursor:pointer">
+        <a class="nav-link dropdown-toggle" appDropdown id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Manage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Save Data</a>
+          <a class="dropdown-item" href="#">Fetch Data</a>
         </div>
       </li>
     </ul>

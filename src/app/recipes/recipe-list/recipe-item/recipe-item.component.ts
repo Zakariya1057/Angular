@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { isNgTemplate } from '@angular/compiler';
+import { RecipeService } from 'src/app/recipe.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-item',
@@ -8,13 +10,16 @@ import { isNgTemplate } from '@angular/compiler';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipeItem;
-  constructor() { }
+
+  recipes;
+
+  constructor(private recipeService:RecipeService,public route:Router,public Acroute:ActivatedRoute) { 
+    this.recipes = this.recipeService.recipes;
+  }
 
   @Output() SendRecipe = new EventEmitter<number>();
   @Input() index:number;
-  setRecipe(index){
-    this.SendRecipe.emit(index);
-  }
+  
   ngOnInit() {
   }
 

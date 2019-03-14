@@ -1,20 +1,18 @@
-import { Component, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  @Output() showRecipesToParent = new EventEmitter<{ String }>();
-  @Output() showListToParent = new EventEmitter<{ String }>();
+  
+  constructor(private recipeService:RecipeService){
 
-  showRecipes(event: any){
-    this.showRecipesToParent.emit(event.target.innerText);
-    console.log(event.target.innerText);
   }
 
-  showList(event: any){
-    this.showListToParent.emit(event.target.innerText);
-    console.log(event.target.innerText);
+  ToggleView(show:string){
+    console.log(show);
+    this.recipeService.toggleView(show); 
   }
 }
