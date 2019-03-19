@@ -1,0 +1,15 @@
+label {
+    font-weight: 500;
+    color: #4b4646;
+    font-size: 1.2em;
+}
+.close {
+    color: red !important;
+    font-weight: bold;
+}
+.close:hover {
+    cursor: pointer;
+}
+input.ng-invalid.ng-touched,textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

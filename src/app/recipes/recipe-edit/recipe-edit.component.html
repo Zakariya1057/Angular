@@ -1,3 +1,55 @@
-<p>
-  recipe-edit works!
-</p>
+<form [formGroup]="recipeForm" class="p-3 mb-5 pb-5" (ngSubmit)="formSubmitted()">
+      <div class="form-group">
+          <label class="float-left">Name</label>
+          <input type="text" class="form-control" name="name" formControlName="name">
+          <p *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched" class="text-danger py-3 text-left">Please Fill Out Username</p>
+      </div>
+      <div class="form-group">
+          <label class="float-left">Description</label>
+          <textarea class="form-control" name="description" formControlName="description" rows="4"required></textarea>
+          <p *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched" class="text-danger py-3 text-left">Please Fill Out Description</p>
+      </div>
+      <div class="form-group">
+          <label class="float-left">Image</label>
+          <img [src]=recipeShowing.imagePath class="img-fluid" *ngIf="recipeShowing">
+          <textarea class="form-control" name="imagePath" formControlName="imagePath" rows="2"></textarea>
+          <p *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched" class="text-danger py-3 text-left">Please Enter Image Url</p>
+      </div>
+      <div class="form-group">
+          <label class="w-100">Ingredients</label>
+          <div class="ingredients" formArrayName="ingredients">
+              <div class="form-group" *ngFor="let hobbycontrol of recipeForm.get('ingredients').controls; let i = index;">
+                  <div [formGroupName]="i">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-8">
+                                 <div class="float-left">Name:</div>
+                                 <input type="text" class="form-control" formControlName="name" required>
+                              </div>
+                              <div class="col-3 pr-0">Amount:
+                                 <input type="number" class="form-control" formControlName="amount" required>
+                              </div>
+                              <div class="col-1 close p-0 m-0"><div class="pt-4 mt-1 text-danger" (click)="DeleteIngredient(i)">X</div></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="float-left">
+              <button class="btn btn-success mb-3" (click)="addHobby()" type="button">Add Ingredient</button>
+          </div>
+          <button class="btn btn-danger" (click)="cancelChanges()">Cancel</button>
+          <div class="float-right">
+              <button class="btn btn-dark" type="submit" *ngIf="recipeShowing;else Adding" [disabled]="!recipeForm.valid">
+                  Update
+              </button>
+              <ng-template #Adding>
+                <button class="btn btn-primary" type="submit" [disabled]="!recipeForm.valid">
+                    Add Food 
+                </button>
+              </ng-template>
+          </div>
+      </div>
+  </form>

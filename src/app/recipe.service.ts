@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from './recipes/recipe.model';
 import { Ingredient } from './shared/ingredient.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class RecipeService {
     )
   ];
 
-  detailsEvent = new EventEmitter<Recipe>();
+  detailsEvent = new Subject();
   
   toggler = new EventEmitter<string>();
   
@@ -29,7 +30,11 @@ export class RecipeService {
 
   showDetails(index:number){
     console.log(index);
-    this.detailsEvent.emit(this.recipes[index])
+   /*  this.detailsEvent.emit(this.recipes[index]) */
+  }
+
+  deleteRecipe(index:number){
+    this.recipes.splice(index,1);
   }
 
 

@@ -9,6 +9,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrls: ['./recipe-item.component.css']
 })
 export class RecipeItemComponent implements OnInit {
+
   @Input() recipeItem;
 
   recipes;
@@ -23,4 +24,7 @@ export class RecipeItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  EmitEvent(index:number){
+    this.recipeService.detailsEvent.next(index);
+  }
 }

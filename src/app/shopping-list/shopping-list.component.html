@@ -9,7 +9,7 @@
       *ngFor="let ingredient of ingredients;let i = index;">
      
         {{ ingredient.name }} ({{ ingredient.amount }})
-      <a href="#" appEditable class="btn btn-success float-right">Edit</a>
+      <a  (click)="EditIngredient(i)" class="btn btn-success float-right text-white">Edit</a>
       <button 
       class="btn btn-danger float-right mr-4"
       [attr.index]="i"

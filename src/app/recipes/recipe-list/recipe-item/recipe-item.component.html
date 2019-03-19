@@ -1,4 +1,6 @@
-<a  *ngFor="let recipeItem of recipes; let index=index;" class="list-group-item clearfix mt-3" [routerLink]=index routerLinkActive="active" style="cursor: pointer;">
+<!-- <a  *ngFor="let recipeItem of recipes; let index=index;" 
+class="list-group-item clearfix mt-3" [routerLink]=index 
+routerLinkActive="active" style="cursor: pointer;" (click)="EmitEvent(index)">
 <div class="float-left">
   <h4 class="list-group-item-heading">{{ recipeItem.name }}</h4>
   <div class="pr-4"><p class="list-group-item-text pr-5 mr-5">{{ recipeItem.description }}</p></div>
@@ -10,4 +12,21 @@
     class="img-responsive"
     style="max-height: 110px;">
 </span>
+</a>
+ -->
+ <a  *ngFor="let recipeItem of recipes; let index=index;" 
+class="list-group-item clearfix mt-3" [routerLink]=index 
+routerLinkActive="active" style="cursor: pointer;" (click)="EmitEvent(index)">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">  
+      <h4 class="list-group-item-heading">{{ recipeItem.name }}</h4>
+      <p class="list-group-item-text">{{ recipeItem.description }}</p>
+      <img
+      [src]="recipeItem.imagePath"
+      alt="{{ recipeItem.name }}"
+      class="img-fluid float-right">
+    </div>
+  </div>
+</div>
 </a>

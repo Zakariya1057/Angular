@@ -1,15 +1,20 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { Ingredient } from './shared/ingredient.model';
 import { RecipeService } from 'src/app/recipe.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ShoppingService {
+export class ShoppingService implements OnInit {
 
   constructor(private RecipeService: RecipeService) { }
-  listChange = new EventEmitter();
+  listChange = new Subject();
+  
+  AddedItems = [];
+  
+  IngredientChange = new Subject<number>();
 
   ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
@@ -20,12 +25,10 @@ export class ShoppingService {
     this.ingredients.push(
       new Ingredient(event.name,event.amount)
     ); 
-    this.listChange.emit();
   }
 
   DeleteFromList(index: number){
     this.ingredients.splice(index,1);
-    this.listChange.emit();
   }
 
   addFromShopping(ingredients: Ingredient[]){
@@ -33,5 +36,17 @@ export class ShoppingService {
     this.RecipeService.toggleView('Shopping');
   }
 
+  updateItem(index:number,name:string,amount:number){
+    const ingredient = this.ingredients[index];
+    ingredient.amount = amount;
+    ingredient.name = name;
+  }
 
+  ngOnInit(){
+    this.listChange.subscribe(
+      () => {
+        console.log('Working');
+      }
+    )
+  }
 }
