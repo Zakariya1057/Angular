@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { RecipeService } from 'src/app/recipe.service';
+import { RecipeService } from 'src/app/shared/recipe.service';
 import { Recipe } from '../recipe.model';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
@@ -16,6 +16,8 @@ export class RecipeEditComponent implements OnInit {
 
   recipeForm:FormGroup;
   recipeShowing:Recipe;
+
+  listChanged:boolean = false;
 
   id:number;
   editMode:boolean;
@@ -35,8 +37,8 @@ export class RecipeEditComponent implements OnInit {
       imagePath: new FormControl(null,Validators.required)
     })
 
-    if(this.id !== undefined){
-    console.log(this.id);
+    if(this.RecipeService.recipes[this.id]){
+
     this.recipeShowing = this.RecipeService.recipes[this.id];
 
     this.recipeForm.patchValue({
@@ -46,16 +48,14 @@ export class RecipeEditComponent implements OnInit {
     });
 
     this.recipeShowing.ingredients.forEach(element => {
-      
         const group = new FormGroup({
         name: new FormControl(element.name,Validators.required),
         amount: new FormControl(element.amount,[Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/)])
       });
 
       (<FormArray>this.recipeForm.get('ingredients')).push(group); 
-
+      this.listChanged = true;
     });
-
   }
 }
 
@@ -72,6 +72,12 @@ export class RecipeEditComponent implements OnInit {
   formSubmitted(){
     const formValues = this.recipeForm.value;
     
+    if (this.recipeForm.dirty || this.listChanged){
+      this.RecipeService.formEditing = true;
+    }
+    else {
+      this.RecipeService.formEditing = false;
+    }
     if(this.id !== undefined){
       this.recipeShowing.name = formValues.name;
       this.recipeShowing.description = formValues.description;
@@ -96,7 +102,8 @@ export class RecipeEditComponent implements OnInit {
   }
 
   DeleteIngredient(index:number){
-    this.recipeForm.get('ingredients').removeAt(index);
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+    this.listChanged = true;
   }
 
   cancelChanges(){

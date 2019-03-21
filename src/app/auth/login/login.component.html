@@ -1,0 +1,18 @@
+
+<form [formGroup]="logIn" (ngSubmit)="onSubmit()" class="w-50 mx-auto my-4">
+    <h1>Log In</h1>
+  <div class="form-group mt-3">
+    Email<br>
+    <div class="form-group">
+      <input type="email" class="form-control" required name="email" formControlName="email" email>
+      <p *ngIf="!logIn.get('email').valid && logIn.get('email').touched">Please Fill Out Email</p>
+    </div>
+  </div>
+  <div class="form-group">
+    Password<br>
+    <div class="form-group">
+      <input type="password" class="form-control" required name="password" formControlName="password">
+    </div>
+  </div>
+  <div class="text-right"><button class="btn btn-danger" type="submit" [disabled]="!logIn.valid">Log In</button></div>
+</form>

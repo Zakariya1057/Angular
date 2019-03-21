@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
-import { Ingredient } from './shared/ingredient.model';
-import { RecipeService } from 'src/app/recipe.service';
+import { RecipeService } from 'src/app/shared/recipe.service';
 import { Subject } from 'rxjs';
+import { Ingredient } from '../shared/ingredient.model';
 
 @Injectable({
   providedIn: 'root'

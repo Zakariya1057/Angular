@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
-import { ShoppingService } from 'src/app/shopping.service';
 import { NgForm } from '@angular/forms';
+import { ShoppingService } from '../shopping.service';
 
 @Component({
   selector: 'app-shopping-edit',

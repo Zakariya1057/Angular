@@ -1,0 +1,28 @@
+<form [formGroup]="signUp" (ngSubmit)="onSubmit()" class="w-50 mx-auto my-4">
+  <h1>Sign Up</h1>
+  <div class="form-group mt-4">
+    Username<br>
+    <div class="form-group">
+      <input type="text" class="form-control" required name="username" formControlName="username" value="zakariya1057">
+    </div>
+  </div>
+  <div class="form-group mt-4">
+    Image<br>
+    <div class="form-group">
+      <input type="file" class="form-control" required name="username" (change)="fileChange($event)">
+    </div>
+  </div>
+  <div class="form-group">
+    Email<br>
+    <div class="form-group">
+      <input type="email" class="form-control" required name="email" formControlName="email" value="zakaria2011@live.no">
+    </div>
+  </div>
+  <div class="form-group">
+    Password<br>
+    <div class="form-group">
+      <input type="password" class="form-control" required name="password" formControlName="password" value="password">
+    </div>
+  </div>
+  <div class="text-right"><button class="btn btn-danger" type="submit">Sign Up</button></div>
+</form>

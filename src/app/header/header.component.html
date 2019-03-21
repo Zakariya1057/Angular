@@ -12,13 +12,26 @@
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="shopping" routerLinkActive="active">Shopping List</a>
       </li>
+      <ng-template [ngIf]="!TokenService.tokenValidated">
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="signup"  routerLinkActive="active">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="login"  routerLinkActive="active">Log In</a>
+      </li>
+   </ng-template>
+    <ng-template [ngIf]="TokenService.tokenValidated" >
+        <li class="nav-item">
+            <a class="nav-link" routerLink="login" (click)="LogMeOut()"  routerLinkActive="active">Log Out</a>
+          </li>
+        </ng-template>
       <li class="nav-item dropdown float-right" style="cursor:pointer">
         <a class="nav-link dropdown-toggle" appDropdown id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Manage
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Save Data</a>
-          <a class="dropdown-item" href="#">Fetch Data</a>
+          <a class="dropdown-item" (click)="sendIngredients()">Save Data</a>
+          <a class="dropdown-item" (click)="getIngredients()">Fetch Data</a>
         </div>
       </li>
     </ul>

@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { RecipeService } from './recipe.service';
+import { RecipeService } from './shared/recipe.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

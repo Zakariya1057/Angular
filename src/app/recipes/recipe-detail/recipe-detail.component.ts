@@ -1,9 +1,10 @@
+import { TokenService } from './../../auth/token-getter.service';
 import { Component, OnInit} from '@angular/core';
-import { RecipeService } from 'src/app/recipe.service';
+import { RecipeService } from 'src/app/shared/recipe.service';
 import {Recipe } from '../recipe.model';
-import { ShoppingService } from 'src/app/shopping.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ShoppingService } from 'src/app/shopping-list/shopping.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -17,7 +18,8 @@ export class RecipeDetailComponent implements OnInit  {
 
   recipeDetail: Recipe;
 
-    constructor(private recipeService:RecipeService,private shoppingService:ShoppingService,private Route:ActivatedRoute,private theRoute:Router) {} 
+    constructor(private recipeService:RecipeService,private shoppingService:ShoppingService,
+      private Route:ActivatedRoute,private theRoute:Router,private TokenService:TokenService) {} 
 
 /*   constructor(private recipeService:RecipeService,private shoppingService:ShoppingService) { 
     this.recipeService.detailsEvent.subscribe( (recipe: Recipe) => {
@@ -61,7 +63,9 @@ if (this.shoppingService.AddedItems.indexOf(this.index) === -1){
   } 
 
   DeleteRecipe(){
-    this.recipeService.deleteRecipe(this.index);
+    if (this.TokenService.tokenValidated){
+      this.recipeService.deleteRecipe(this.index);
+    }
   }
   
 }
