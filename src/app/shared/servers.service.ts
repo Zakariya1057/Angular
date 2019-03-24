@@ -26,13 +26,11 @@ export class MyHttpService {
     return this.http.get("http://localhost:8080/ingredients").pipe(
       map(
         (Response: Array<any>)=>{
-          console.log(Response);
           const response = Response;
            for (let ingredient of response){
             if (!ingredient['ingredients']){
               ingredient['ingredients'] = [];
             }
-            console.log(ingredient);
           } 
 
         return Response;

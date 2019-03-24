@@ -110,4 +110,8 @@ export class RecipeEditComponent implements OnInit {
     this.recipeForm.reset();
     this.Router.navigate(['..'],{relativeTo:this.Acroute});
   }
+  
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+}
 }

@@ -11,7 +11,6 @@ export class AppComponent {
 
   constructor(private recipeService:RecipeService){
    this.showing =  recipeService.showing;
-   console.log(this.showing);
    recipeService.toggler.subscribe(
      (showing) => {
       this.showing = showing;

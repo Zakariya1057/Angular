@@ -11,12 +11,15 @@ export class AuthGuardService implements CanActivate {
   constructor(public TokenService:TokenService,public router:Router) { }
 
   canActivate(router:ActivatedRouteSnapshot,state:RouterStateSnapshot ){
-   if (this.TokenService.tokenValidated){
+
+/*    if (this.TokenService.tokenValidated){
      return true
    }
    else{
     return this.router.navigate(['recipes']);
-   }
+   } */
+   return this.TokenService.authenticateUser();
+
   }
 
 }

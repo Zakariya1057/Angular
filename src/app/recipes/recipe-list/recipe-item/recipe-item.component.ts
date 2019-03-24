@@ -28,7 +28,6 @@ export class RecipeItemComponent implements OnInit,OnDestroy {
 
     this.Subscription = this.recipeService.recipesChanged.subscribe( ()=>{
       this.recipes = this.recipeService.recipes;
-      console.info(this.recipes);
     })
 
   }

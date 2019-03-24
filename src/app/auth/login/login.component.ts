@@ -24,10 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-
     this.TokenService.LoginToken(this.logIn.value);
-
-    this.router.navigate(['../']);
-
   }
 }

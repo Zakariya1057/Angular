@@ -1,8 +1,9 @@
-import { TokenService } from './../auth/token-getter.service';
+
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../shared/recipe.service';
-import { MyHttpService } from '../shared/servers.service';
 import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/shared/recipe.service';
+import { MyHttpService } from 'src/app/shared/servers.service';
+import { TokenService } from 'src/app/auth/token-getter.service';
 
 @Component({
   selector: 'app-header',
@@ -19,41 +20,44 @@ export class HeaderComponent implements OnInit {
   ngOnInit(){
      this.TokenService.validateToken().subscribe(
       (data:any) => { 
-        if(data.code === 401){
+        if(data.statusCode   === 401){
           this.TokenService.tokenValidated = false;
         } 
         else {
           this.TokenService.tokenValidated = true;
         }
-        console.log(data);
       }
     , err => console.log(err))
     ;
   }
   sendIngredients(){
-    const recipes = this.recipeService.recipes;
+    const recipes:any = this.recipeService.recipes;
+    console.log(recipes);
     this.httpService.setRecipes(recipes).subscribe((response:any)=>{
-      if (response.code !== 401){
-      console.log(response);
+      if (recipes.code !== 401){
+
     }
   })
   }
+
   getIngredients(){
     
       this.httpService.getRecipes().subscribe( (response:any)=>{
-      if (response.code !== 401){
+      if (response.statusCode !== 401){
       this.recipeService.recipes = response;
-      console.log(this.recipeService.recipes);
       this.recipeService.recipesChanged.next();
+        }
+        else {
+          this.router.navigate(['login'])
         }
 
     }) 
-
-    this.router.navigate(['recipes']);
 }
+
 LogMeOut(){
   localStorage.removeItem("access_token");
   this.TokenService.tokenValidated = false;
 }
+
 
 }

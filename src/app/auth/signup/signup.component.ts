@@ -30,7 +30,6 @@ export class SignupComponent implements OnInit {
     input.append('password', this.signUp.get('password').value);
     input.append('email', this.signUp.get('email').value);
     input.append('image', this.signUp.get('image').value);
-    console.log(input);
     return input;
   }
 
@@ -50,7 +49,6 @@ export class SignupComponent implements OnInit {
 
   fileChange(event) {
     if(event.target.files.length > 0) {
-      console.log(event.target.files[0]);
       let file = event.target.files[0];
       this.signUp.get('image').setValue(file);
     }

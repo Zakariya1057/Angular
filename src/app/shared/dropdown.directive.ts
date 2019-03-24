@@ -1,5 +1,4 @@
 import { Directive, HostListener, ElementRef, Renderer2, HostBinding, OnInit } from '@angular/core';
-import { stringify } from '@angular/core/src/util';
 
 @Directive({
   selector: '[appDropdown]'
@@ -32,7 +31,6 @@ sibling;
   ngOnInit(){
     this.sibling = this.renderer.nextSibling(this.elRef.nativeElement);
     this.parent = this.renderer.parentNode(this.elRef.nativeElement);
-    console.log(this.sibling);
   }
 
 

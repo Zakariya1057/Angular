@@ -18,7 +18,7 @@
       <div class="form-group">
           <label class="w-100">Ingredients</label>
           <div class="ingredients" formArrayName="ingredients">
-              <div class="form-group" *ngFor="let hobbycontrol of recipeForm.get('ingredients').controls; let i = index;">
+              <div class="form-group" *ngFor="let ingredientCtrl of getControls(); let i = index;">
                   <div [formGroupName]="i">
                       <div class="container-fluid">
                           <div class="row">
